@@ -14,6 +14,8 @@ import android.util.*;
 import android.webkit.*;
 import android.animation.*;
 import android.view.animation.*;
+
+import java.lang.reflect.Type;
 import java.util.*;
 import java.text.*;
 import android.support.v7.app.AppCompatActivity;
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-        lst_eq1.setOnItemClickListener(new AdapterView.OnClickListener(){
+        lst_eq1.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> _param1, View _param2, int _param3, long _param4){
                 final int _position = _param3;
@@ -193,5 +195,91 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        lst_eq2.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> _param1, View _param2, int _param3, long _param4){
+                final int _position = _param3;
+                num = Double.parseDouble(res_eq2.getText().toString());
+                num++;
+                res_eq2.setText(String.valueOf((long)(num)));
+                list_eventos.add(list_jug_eq2.get((int)(_position)).concat(" metio gol"));
+                lst_eventos.setAdapter(new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_list_item_2, list_eventos));
+            }
+        });
     }
+    private void initializeLogic(){
+        list_jug_eq1.add("Catri");
+        list_jug_eq1.add("Bruce");
+        list_jug_eq1.add("Willy");
+        list_jug_eq1.add("Pom");
+        list_jug_eq1.add("Ale");
+        list_jug_eq2.add("Alee");
+        list_jug_eq2.add("Gabi");
+        list_jug_eq2.add("Rodri");
+        list_jug_eq2.add("Rho");
+        list_jug_eq2.add("Edu");
+        lst_eq1.setAdapter(new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, list_jug_eq1));
+        lst_eq2.setAdapter(new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, list_jug_eq2));
+    }
+
+    @Override
+    protected void onActivityResult(int _requestCode, int _resultCode, Intent _data){
+        super.onActivityResult(_requestCode,_resultCode, _data);
+
+        switch (_requestCode){
+            default;
+            break;
+        }
+    }
+
+    private void _formattime(final double _time){
+        seg = (_time / 1000) % 60;
+        min = (_time / 60000) % 60;
+        txt_time.setText(String.valueOf((long)(min)).concat(":").concat(String.valueOf((long)(seg))));
+    }
+
+    @Deprecated
+    public void showMessage(String _s){
+        Toast.makeText(getApplicationContext(), _s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Deprecated
+    public int getLocationY(View _v){
+        int _location[] = new int[2];
+        _v.getLocationInWindow(_location);
+        return _location
+    }
+
+    @Deprecated
+    public int getRandom(int _min, int _max){
+        Random random = new Random();
+        return random.nextInt(_max - _min + 1) + _min;
+    }
+
+    @Deprecated
+    public ArrayList<Double> getCheckedItemPositionsToArray(ListView _list){
+        ArrayList<Double> _result = new ArrayList<Double>();
+        SparseBooleanArray _arr = _list.getCheckedItemPositions();
+        for (int _ildx = 0; _ildx < _arr.size(); _ildx++){
+            if (_arr.valueAt(_ildx))
+                _result.add((double)_arr.keyAt(_ildx));
+        }
+        return _result;
+    }
+
+    @Deprecated
+    public float getDip(int _input){
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, _input, getResources().getDisplayMetrics());
+    }
+
+    @Deprecated
+    public int getDisplayWidthPixels(){
+        return getResources().getDisplayMetrics().widthPixels;
+    }
+
+    @Deprecated
+    public int getDisplayHeightPixels(){
+        return getResources().getDisplayMetrics().heightPixels;
+    }
+
 }
