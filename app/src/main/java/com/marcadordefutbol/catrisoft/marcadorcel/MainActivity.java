@@ -2,6 +2,7 @@ package com.marcadordefutbol.catrisoft.marcadorcel;
 
 import android.app.*;
 import android.os.*;
+//import android.R;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity{
         linear1 = (LinearLayout) findViewById(R.id.linear1);
         linear5 = (LinearLayout) findViewById(R.id.linear5);
         linear6 = (LinearLayout) findViewById(R.id.linear6);
-        linear7 = (LinearLayout) findViewById(R.id.linear7);
+        //linear7 = (LinearLayout) findViewById(R.id.linear7);
         linear8 = (LinearLayout) findViewById(R.id.linear8);
         lst_eq1 = (ListView) findViewById(R.id.lst_eq1);
         lst_eq2 = (ListView) findViewById(R.id.lst_eq2);
@@ -227,7 +228,7 @@ public class MainActivity extends AppCompatActivity{
         super.onActivityResult(_requestCode,_resultCode, _data);
 
         switch (_requestCode){
-            default;
+            default:
             break;
         }
     }
@@ -247,7 +248,7 @@ public class MainActivity extends AppCompatActivity{
     public int getLocationY(View _v){
         int _location[] = new int[2];
         _v.getLocationInWindow(_location);
-        return _location
+        return _location[1];
     }
 
     @Deprecated
